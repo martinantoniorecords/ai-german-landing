@@ -28,6 +28,9 @@ function App() {
             fontSize: "1rem",
             cursor: "pointer",
           }}
+          onClick={() => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+          }}
         >
           Unverbindliches Beratungsgespräch vereinbaren
         </button>
@@ -52,7 +55,7 @@ function App() {
           Warum deutsche Unternehmen uns wählen
         </h2>
         <ul style={{ listStyle: "disc", margin: "0 auto", maxWidth: "600px", textAlign: "left" }}>
-          <li><strong>Projektbeschleunigung:</strong> Verkürzen Sie Entwicklungszeiten um bis zu 30 %</li>
+          <li><strong>Projektbeschleunigung:</strong> Verkürzen Sie Entwicklungszeiten um bis zu 30 %</li>
           <li><strong>Kostenersparnis:</strong> Effiziente Subunternehmer-Lösungen ohne Qualitätsverlust</li>
           <li><strong>Hohe Sicherheit:</strong> Standardkonforme KI- und Softwareentwicklung</li>
           <li><strong>Flexibilität:</strong> Temporäre Teams für Spitzenprojekte oder Kapazitätsengpässe</li>
@@ -66,30 +69,44 @@ function App() {
         </h2>
         <ul style={{ listStyle: "disc", margin: "0 auto", maxWidth: "600px", textAlign: "left" }}>
           <li>Unterstützung eines deutschen SaaS-Unternehmens bei der Chatbot-Integration – Projekt in 6 Wochen abgeschlossen.</li>
-          <li>KI-gestützte Automatisierung für einen Mittelständler – 25 % schnellere Prozesse.</li>
+          <li>KI-gestützte Automatisierung für einen Mittelständler – 25 % schnellere Prozesse.</li>
         </ul>
       </section>
 
-      {/* Call to Action / Contact Form */}
+      {/* Contact / Call to Action */}
       <section style={{ backgroundColor: "#f5f5f5", padding: "4rem 2rem", textAlign: "center" }}>
         <h2 style={{ fontSize: "1.8rem", fontWeight: "600", marginBottom: "2rem" }}>
           Starten Sie jetzt Ihr KI-Projekt
         </h2>
         <p style={{ marginBottom: "2rem" }}>
-          Füllen Sie das Formular aus oder rufen Sie uns direkt an: <strong>Telefonnummer: 00359 882 957 008</strong>
+          Füllen Sie das Formular aus oder rufen Sie uns direkt an:{" "}
+          <strong>Telefonnummer: 00359 882 957 008</strong>
         </p>
-        <form style={{ maxWidth: "500px", margin: "0 auto", textAlign: "left" }}>
+
+        {/* ✅ Netlify Form Integration */}
+        <form
+          name="kontakt"
+          method="POST"
+          data-netlify="true"
+          style={{ maxWidth: "500px", margin: "0 auto", textAlign: "left" }}
+        >
+          <input type="hidden" name="form-name" value="kontakt" />
+
           <label style={{ display: "block", marginBottom: "0.5rem" }}>Name</label>
-          <input type="text" style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
+          <input name="name" type="text" required style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>E-Mail</label>
-          <input type="email" style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
+          <input name="email" type="email" required style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>Firma</label>
-          <input type="text" style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
+          <input name="firma" type="text" style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>Projekt-Herausforderung</label>
-          <textarea style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
+          <textarea
+            name="projekt"
+            rows="4"
+            style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
+          ></textarea>
 
           <button
             type="submit"
