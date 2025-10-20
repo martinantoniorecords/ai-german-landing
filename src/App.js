@@ -18,22 +18,21 @@ function App() {
           Wir helfen Ihnen, Entwicklungszeiten zu verkürzen, Projektkosten zu senken und hochsichere
           KI-Lösungen schneller umzusetzen – mit erfahrenen Entwicklern als Subunternehmer.
         </p>
-        <button
-          style={{
-            backgroundColor: "#0070f3",
-            color: "#fff",
-            border: "none",
-            padding: "1rem 2rem",
-            borderRadius: "5px",
-            fontSize: "1rem",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-          }}
-        >
-          Unverbindliches Beratungsgespräch vereinbaren
-        </button>
+        <a href="#contact">
+          <button
+            style={{
+              backgroundColor: "#0070f3",
+              color: "#fff",
+              border: "none",
+              padding: "1rem 2rem",
+              borderRadius: "5px",
+              fontSize: "1rem",
+              cursor: "pointer",
+            }}
+          >
+            Unverbindliches Beratungsgespräch vereinbaren
+          </button>
+        </a>
       </section>
 
       {/* Services Section */}
@@ -73,37 +72,55 @@ function App() {
         </ul>
       </section>
 
-      {/* Contact / Call to Action */}
-      <section style={{ backgroundColor: "#f5f5f5", padding: "4rem 2rem", textAlign: "center" }}>
+      {/* Contact Section */}
+      <section id="contact" style={{ backgroundColor: "#f5f5f5", padding: "4rem 2rem", textAlign: "center" }}>
         <h2 style={{ fontSize: "1.8rem", fontWeight: "600", marginBottom: "2rem" }}>
           Starten Sie jetzt Ihr KI-Projekt
         </h2>
         <p style={{ marginBottom: "2rem" }}>
-          Füllen Sie das Formular aus oder rufen Sie uns direkt an:{" "}
-          <strong>Telefonnummer: 00359 882 957 008</strong>
+          Füllen Sie das Formular aus oder rufen Sie uns direkt an: <strong>Telefonnummer: 00359 882 957 008</strong>
         </p>
 
-        {/* ✅ Netlify Form Integration */}
+        {/* ✅ Working Netlify Form */}
         <form
-          name="kontakt"
+          name="contact"
           method="POST"
+          action="/thank-you"
           data-netlify="true"
+          data-netlify-honeypot="bot-field"
           style={{ maxWidth: "500px", margin: "0 auto", textAlign: "left" }}
         >
-          <input type="hidden" name="form-name" value="kontakt" />
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden>
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>Name</label>
-          <input name="name" type="text" required style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
+          <input
+            type="text"
+            name="name"
+            required
+            style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
+          />
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>E-Mail</label>
-          <input name="email" type="email" required style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
+          <input
+            type="email"
+            name="email"
+            required
+            style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
+          />
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>Firma</label>
-          <input name="firma" type="text" style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
+          <input
+            type="text"
+            name="company"
+            style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
+          />
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>Projekt-Herausforderung</label>
           <textarea
-            name="projekt"
+            name="message"
             rows="4"
             style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
           ></textarea>
