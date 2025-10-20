@@ -72,58 +72,44 @@ function App() {
         </ul>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" style={{ backgroundColor: "#f5f5f5", padding: "4rem 2rem", textAlign: "center" }}>
+      {/* Contact Form Section */}
+      <section
+        id="contact"
+        style={{ backgroundColor: "#f5f5f5", padding: "4rem 2rem", textAlign: "center" }}
+      >
         <h2 style={{ fontSize: "1.8rem", fontWeight: "600", marginBottom: "2rem" }}>
           Starten Sie jetzt Ihr KI-Projekt
         </h2>
         <p style={{ marginBottom: "2rem" }}>
-          Füllen Sie das Formular aus oder rufen Sie uns direkt an: <strong>Telefonnummer: 00359 882 957 008</strong>
+          Füllen Sie das Formular aus oder rufen Sie uns direkt an: <strong>Telefon: +359 882 957 008</strong>
         </p>
 
-        {/* ✅ Working Netlify Form */}
         <form
           name="contact"
           method="POST"
-          action="/thank-you"
           data-netlify="true"
-          data-netlify-honeypot="bot-field"
+          netlify-honeypot="bot-field"
+          action="/success"
           style={{ maxWidth: "500px", margin: "0 auto", textAlign: "left" }}
         >
           <input type="hidden" name="form-name" value="contact" />
           <p hidden>
-            <label>Don’t fill this out: <input name="bot-field" /></label>
+            <label>
+              Don’t fill this out: <input name="bot-field" />
+            </label>
           </p>
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>Name</label>
-          <input
-            type="text"
-            name="name"
-            required
-            style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
-          />
+          <input name="name" type="text" required style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>E-Mail</label>
-          <input
-            type="email"
-            name="email"
-            required
-            style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
-          />
+          <input name="email" type="email" required style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>Firma</label>
-          <input
-            type="text"
-            name="company"
-            style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
-          />
+          <input name="company" type="text" style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
 
           <label style={{ display: "block", marginBottom: "0.5rem" }}>Projekt-Herausforderung</label>
-          <textarea
-            name="message"
-            rows="4"
-            style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
-          ></textarea>
+          <textarea name="message" required style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }} />
 
           <button
             type="submit"
