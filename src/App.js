@@ -29,7 +29,6 @@ function App() {
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", color: "#333", lineHeight: "1.6" }}>
-      {/* Hero Section */}
       <section
         style={{
           backgroundColor: "#f5f5f5",
@@ -42,7 +41,6 @@ function App() {
         </h1>
       </section>
 
-      {/* Contact Form Section */}
       <section
         id="contact"
         style={{ backgroundColor: "#f5f5f5", padding: "4rem 2rem", textAlign: "center" }}
