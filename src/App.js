@@ -1,37 +1,33 @@
-import React, { useState } from "react";
-import { supabase } from "./supabaseClient"; // make sure this points to your supabaseClient.js
+// src/App.js
+import React, { useRef, useState } from "react";
+import supabase from "./supabaseClient";
 
 function App() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const form = useRef();
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const handleSubmit = async (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      // Insert into the new table for AI project inquiries
-      const { error } = await supabase.from("ai_project_messages").insert([
-        {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        },
-      ]);
+    const formData = new FormData(form.current);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
 
-      if (error) throw error;
+    const { error } = await supabase.from("ai_project_messages").insert([
+      { name, email, message },
+    ]);
 
-      alert("Vielen Dank! Ihre Nachricht wurde gesendet.");
-      setFormData({ name: "", email: "", message: "" });
-    } catch (err) {
-      console.error(err);
+    if (error) {
+      console.error("Error inserting message:", error);
       alert("Fehler beim Senden. Bitte versuchen Sie es später.");
-    } finally {
-      setLoading(false);
+    } else {
+      alert("Vielen Dank! Ihre Nachricht wurde gesendet.");
+      e.target.reset();
     }
+
+    setLoading(false);
   };
 
   return (
@@ -57,47 +53,28 @@ function App() {
         </h2>
 
         <form
-          onSubmit={handleSubmit}
+          ref={form}
+          onSubmit={sendEmail}
           style={{ maxWidth: "500px", margin: "0 auto", textAlign: "left" }}
         >
           <p>
             <label>
               Name:<br />
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                style={{ width: "100%", padding: "0.5rem" }}
-              />
+              <input type="text" name="name" required style={{ width: "100%", padding: "0.5rem" }} />
             </label>
           </p>
 
           <p>
             <label>
               E-Mail:<br />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                style={{ width: "100%", padding: "0.5rem" }}
-              />
+              <input type="email" name="email" required style={{ width: "100%", padding: "0.5rem" }} />
             </label>
           </p>
 
           <p>
             <label>
               Nachricht:<br />
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                style={{ width: "100%", padding: "0.5rem" }}
-              />
+              <textarea name="message" required style={{ width: "100%", padding: "0.5rem" }}></textarea>
             </label>
           </p>
 
@@ -112,7 +89,7 @@ function App() {
                 padding: "1rem 2rem",
                 borderRadius: "5px",
                 fontSize: "1rem",
-                cursor: "pointer",
+                cursor: loading ? "not-allowed" : "pointer",
               }}
             >
               {loading ? "Senden..." : "Absenden"}
