@@ -1,30 +1,27 @@
-import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useState } from "react";
 
 function App() {
-  const form = useRef();
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const sendEmail = (e) => {
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const sendEmail = async (e) => {
     e.preventDefault();
+    try {
+      const res = await fetch("/.netlify/functions/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    emailjs
-      .sendForm(
-        "service_0g4hzjq",
-        "template_67a1ux8",
-        form.current,
-        "7ssQ7rgQbCQEdXZ_4"
-      )
-      .then(
-        (result) => {
-          console.log("Email sent:", result.text);
-          alert("Vielen Dank! Ihre Nachricht wurde gesendet.");
-          e.target.reset();
-        },
-        (error) => {
-          console.error("Email error:", error.text);
-          alert("Fehler beim Senden. Bitte versuchen Sie es später.");
-        }
-      );
+      const data = await res.json();
+      alert(data.message);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error("Email error:", err);
+      alert("Fehler beim Senden. Bitte versuchen Sie es später.");
+    }
   };
 
   return (
@@ -50,28 +47,47 @@ function App() {
         </h2>
 
         <form
-          ref={form}
           onSubmit={sendEmail}
           style={{ maxWidth: "500px", margin: "0 auto", textAlign: "left" }}
         >
           <p>
             <label>
               Name:<br />
-              <input type="text" name="name" required style={{ width: "100%", padding: "0.5rem" }} />
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                style={{ width: "100%", padding: "0.5rem" }}
+              />
             </label>
           </p>
 
           <p>
             <label>
               E-Mail:<br />
-              <input type="email" name="email" required style={{ width: "100%", padding: "0.5rem" }} />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                style={{ width: "100%", padding: "0.5rem" }}
+              />
             </label>
           </p>
 
           <p>
             <label>
               Nachricht:<br />
-              <textarea name="message" required style={{ width: "100%", padding: "0.5rem" }}></textarea>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                style={{ width: "100%", padding: "0.5rem" }}
+              />
             </label>
           </p>
 
