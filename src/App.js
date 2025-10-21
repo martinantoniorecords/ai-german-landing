@@ -1,6 +1,5 @@
 // src/App.js
 import React, { useRef, useState } from "react";
-import supabase from "./supabaseClient";
 
 function App() {
   const form = useRef();
@@ -15,16 +14,24 @@ function App() {
     const email = formData.get("email");
     const message = formData.get("message");
 
-    const { error } = await supabase.from("ai_project_messages").insert([
-      { name, email, message },
-    ]);
+    try {
+      const response = await fetch("/.netlify/functions/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
 
-    if (error) {
-      console.error("Error inserting message:", error);
+      if (response.ok) {
+        alert("Vielen Dank! Ihre Nachricht wurde gesendet.");
+        e.target.reset();
+      } else {
+        alert("Fehler beim Senden. Bitte versuchen Sie es später.");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
       alert("Fehler beim Senden. Bitte versuchen Sie es später.");
-    } else {
-      alert("Vielen Dank! Ihre Nachricht wurde gesendet.");
-      e.target.reset();
     }
 
     setLoading(false);

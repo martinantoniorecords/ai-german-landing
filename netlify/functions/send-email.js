@@ -17,9 +17,9 @@ export async function handler(event, context) {
     });
 
     await transporter.sendMail({
-      from: `"${name}" <${email}>`,             // sender name & email
-      to: "info@martitony.com",  // where you want emails
-      replyTo: email,                           // reply directly to sender
+      from: `"${name}" <${email}>`,
+      to: "info@martitony.com",
+      replyTo: email,
       subject: `Neue Nachricht von ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
