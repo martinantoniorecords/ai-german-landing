@@ -51,6 +51,40 @@ function App() {
         </h1>
       </section>
 
+      {/* --- Persuasive description section --- */}
+      <section
+        style={{
+          padding: "3rem 2rem",
+          maxWidth: "800px",
+          margin: "0 auto",
+          textAlign: "center",
+        }}
+      >
+        <h2 style={{ fontSize: "1.6rem", fontWeight: "600", marginBottom: "1rem" }}>
+          Intelligente KI-Lösungen, die Ihr Unternehmen voranbringen
+        </h2>
+
+        <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
+          Wir helfen deutschen Unternehmen, die Kraft künstlicher Intelligenz praktisch zu nutzen –
+          ohne komplizierte Technik oder endlose Meetings. Unsere spezialisierten KI- und
+          Chatbot-Systeme automatisieren Kundenkommunikation, Support und interne Abläufe, damit Sie
+          sich auf das Wesentliche konzentrieren können: Wachstum und Innovation.
+        </p>
+
+        <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
+          Ob Sie einen virtuellen Assistenten für Ihre Website, einen Chatbot für Social Media oder
+          eine individuelle KI-Lösung zur Prozessoptimierung benötigen – wir entwickeln Systeme, die
+          zuverlässig, sicher und exakt auf Ihre Branche abgestimmt sind.
+        </p>
+
+        <p style={{ fontSize: "1.1rem" }}>
+          Mit unserer Erfahrung in Sprachmodellen, Automatisierung und KI-Integration verbinden wir
+          Technologie mit echter Benutzerfreundlichkeit. So entsteht messbarer Mehrwert – in Form
+          von zufriedenen Kunden, kürzeren Reaktionszeiten und neuen digitalen Möglichkeiten.
+        </p>
+      </section>
+      {/* --- End of description section --- */}
+
       <section
         id="contact"
         style={{ backgroundColor: "#f5f5f5", padding: "4rem 2rem", textAlign: "center" }}
