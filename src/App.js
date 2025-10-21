@@ -1,26 +1,36 @@
 import React, { useState } from "react";
+import { supabase } from "./supabaseClient"; // make sure this points to your supabaseClient.js
 
 function App() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const sendEmail = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch("/.netlify/functions/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+    setLoading(true);
 
-      const data = await res.json();
-      alert(data.message);
+    try {
+      // Insert into the new table for AI project inquiries
+      const { error } = await supabase.from("ai_project_messages").insert([
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+      ]);
+
+      if (error) throw error;
+
+      alert("Vielen Dank! Ihre Nachricht wurde gesendet.");
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      console.error("Email error:", err);
+      console.error(err);
       alert("Fehler beim Senden. Bitte versuchen Sie es später.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -47,7 +57,7 @@ function App() {
         </h2>
 
         <form
-          onSubmit={sendEmail}
+          onSubmit={handleSubmit}
           style={{ maxWidth: "500px", margin: "0 auto", textAlign: "left" }}
         >
           <p>
@@ -94,6 +104,7 @@ function App() {
           <p>
             <button
               type="submit"
+              disabled={loading}
               style={{
                 backgroundColor: "#0070f3",
                 color: "#fff",
@@ -104,7 +115,7 @@ function App() {
                 cursor: "pointer",
               }}
             >
-              Absenden
+              {loading ? "Senden..." : "Absenden"}
             </button>
           </p>
         </form>
