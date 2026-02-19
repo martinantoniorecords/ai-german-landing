@@ -7,12 +7,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, message } = req.body;
+    // Parse JSON body
+    const { name, email, message } = JSON.parse(req.body);
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
+      port: 465, // SSL port is more reliable on serverless
+      secure: true, 
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_PASS,
