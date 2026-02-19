@@ -41,7 +41,7 @@ export default async function handler(req, res) {
   try {
     const info = await transporter.sendMail({
       from: `"Website Kontaktformular" <${process.env.GMAIL_USER}>`,
-      to: "info@martitony.com",
+      to: "martin.lesichkov@gmail.com",
       replyTo: email,
       subject: `Neue Nachricht von ${name}`,
       html: `
