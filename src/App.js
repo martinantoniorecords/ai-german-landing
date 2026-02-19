@@ -15,7 +15,7 @@ function App() {
     const message = formData.get("message");
 
     try {
-      const response = await fetch("/.netlify/functions/send-email", {
+      const response = await fetch("/api/send-email", { // <-- Vercel API route
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,6 @@ function App() {
         </h1>
       </section>
 
-      {/* --- Persuasive description section --- */}
       <section
         style={{
           padding: "3rem 2rem",
@@ -66,8 +65,7 @@ function App() {
 
         <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
           Unsere IT Terraforming Services optimieren, modernisieren und automatisieren Ihre digitale Infrastruktur.
-          Wir schaffen stabile, skalierbare und zukunftssichere Systeme, damit Ihr Unternehmen
-          effizienter arbeiten kann und neue Möglichkeiten schneller nutzen kann.
+          Wir schaffen stabile, skalierbare und zukunftssichere Systeme, damit Ihr Unternehmen effizienter arbeiten kann.
         </p>
 
         <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
@@ -81,7 +79,6 @@ function App() {
           So schaffen wir echten Mehrwert: schnellere Abläufe, weniger Fehler und maximale Skalierbarkeit.
         </p>
       </section>
-      {/* --- End of description section --- */}
 
       <section
         id="contact"
