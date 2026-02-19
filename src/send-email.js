@@ -1,29 +1,33 @@
-// /netlify/functions/send-email.js
+// api/send-email.js
 import nodemailer from "nodemailer";
 
-export async function handler(event, context) {
-  try {
-    const { name, email, message } = JSON.parse(event.body);
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method Not Allowed" });
+  }
 
-    // Configure your SMTP
+  try {
+    const { name, email, message } = req.body;
+
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com", // your SMTP host
-      port: 465, // SSL
-      secure: true,
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
       auth: {
-        user: "martivideoproductions2@gmail.com",      // your SMTP email
-        pass: "vduh bvyn eihg mtry",         // app password if Gmail
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
       },
+      tls: { rejectUnauthorized: false },
     });
 
     await transporter.sendMail({
-      from: `"${name}" <${email}>`,             // sender name & email
-      to: "info@martitony.com",  // where you want emails
-      replyTo: email,                           // reply directly to sender
+      from: `"Website Kontaktformular" <${process.env.GMAIL_USER}>`,
+      to: "info@martitony.com",
+      replyTo: email,
       subject: `Neue Nachricht von ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
-          <p>Eine neue Nachricht von Ihrem KI-Projekt-Kontaktformular:</p>
+          <p>Eine neue Nachricht von Ihrem IT Terraforming-Kontaktformular:</p>
           <div style="margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
@@ -34,12 +38,9 @@ export async function handler(event, context) {
       `,
     });
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: "Email erfolgreich gesendet!" }),
-    };
+    return res.status(200).json({ message: "Email erfolgreich gesendet!" });
   } catch (err) {
     console.error("SMTP Error:", err);
-    return { statusCode: 500, body: JSON.stringify({ message: "Fehler beim Senden der Email" }) };
+    return res.status(500).json({ message: "Fehler beim Senden der Email" });
   }
 }
