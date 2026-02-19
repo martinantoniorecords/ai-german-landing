@@ -47,7 +47,7 @@ function App() {
         }}
       >
         <h1 style={{ fontSize: "2.2rem", fontWeight: "700", marginBottom: "1rem" }}>
-          Spezialisierte KI- und Chatbot-Entwicklung für deutsche Softwareunternehmen
+          IT Terraforming Services für digitale Unternehmen
         </h1>
       </section>
 
@@ -61,26 +61,24 @@ function App() {
         }}
       >
         <h2 style={{ fontSize: "1.6rem", fontWeight: "600", marginBottom: "1rem" }}>
-          Intelligente KI-Lösungen, die Ihr Unternehmen voranbringen
+          Transformieren Sie Ihre digitale Landschaft
         </h2>
 
         <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
-          Wir helfen deutschen Unternehmen, die Kraft künstlicher Intelligenz praktisch zu nutzen –
-          ohne komplizierte Technik oder endlose Meetings. Unsere spezialisierten KI- und
-          Chatbot-Systeme automatisieren Kundenkommunikation, Support und interne Abläufe, damit Sie
-          sich auf das Wesentliche konzentrieren können: Wachstum und Innovation.
+          Unsere IT Terraforming Services optimieren, modernisieren und automatisieren Ihre digitale Infrastruktur.
+          Wir schaffen stabile, skalierbare und zukunftssichere Systeme, damit Ihr Unternehmen
+          effizienter arbeiten kann und neue Möglichkeiten schneller nutzen kann.
         </p>
 
         <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
-          Ob Sie einen virtuellen Assistenten für Ihre Website, einen Chatbot für Social Media oder
-          eine individuelle KI-Lösung zur Prozessoptimierung benötigen – wir entwickeln Systeme, die
-          zuverlässig, sicher und exakt auf Ihre Branche abgestimmt sind.
+          Von Software-Architektur-Redesign über Cloud-Migration bis hin zu Prozessautomatisierung –
+          wir gestalten Ihre digitale Umgebung so, dass Technologie nahtlos mit Ihren Geschäftsprozessen zusammenarbeitet.
         </p>
 
         <p style={{ fontSize: "1.1rem" }}>
-          Mit unserer Erfahrung in Sprachmodellen, Automatisierung und KI-Integration verbinden wir
-          Technologie mit echter Benutzerfreundlichkeit. So entsteht messbarer Mehrwert – in Form
-          von zufriedenen Kunden, kürzeren Reaktionszeiten und neuen digitalen Möglichkeiten.
+          Mit unserer Erfahrung in IT-Infrastruktur, DevOps und Automatisierung verwandeln wir
+          komplexe Systeme in ein robustes, wartbares und effizientes digitales Ökosystem.
+          So schaffen wir echten Mehrwert: schnellere Abläufe, weniger Fehler und maximale Skalierbarkeit.
         </p>
       </section>
       {/* --- End of description section --- */}
@@ -90,7 +88,7 @@ function App() {
         style={{ backgroundColor: "#f5f5f5", padding: "4rem 2rem", textAlign: "center" }}
       >
         <h2 style={{ fontSize: "1.8rem", fontWeight: "600", marginBottom: "2rem" }}>
-          Starten Sie jetzt Ihr KI-Projekt
+          Starten Sie Ihr IT Terraforming Projekt
         </h2>
 
         <form
